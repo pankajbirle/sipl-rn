@@ -26,8 +26,6 @@ export function loginUserAPI(requestData, callback) {
     axios
       .post(API.login, requestData, { headers })
       .then(response => {
-        //callback(response);
-        // alert("then");
         const userFormatedData = formatGetUserProfileResult(
           response.data.success
         );
@@ -35,7 +33,7 @@ export function loginUserAPI(requestData, callback) {
         callback(response);
       })
       .catch(error => {
-        console.log("fails", error);
+        console.log("login API fails", error);
         dispatch(getFailure(error));
         apiErrors(error);
       });
