@@ -56,6 +56,9 @@ export const MESSAGES = {
   INVALID_EMAIL: "It seems, the email address is invalid.",
   RESEND_VARIFICATION_CODE_FAIL:
     "Oops! something went wrong in resending verification token on your registered email address.",
+  SOMETHING_WENT_WRONG: "Something went wrong please try again.",
+  POOR_CONNECTION: "Poor Connection",
+  POOR_INTERNET_CONNECTION: "Poor internet connection. Try later!",
   LOGOUT_SUCCESS: "You are successfully logged out.",
   USER_PROFILE_IMAGE_UPLOAD_SUCCESS:
     "Your profile image has been uploaded successfully.",
@@ -64,6 +67,8 @@ export const MESSAGES = {
   OLD_PASSWORD_ERROR: "Please enter valid old password.",
   RESET_PASSWORD:
     "The reset password instructions have been sent on your relevant  email address.",
+  UNAUTHORIZED_USER: "You are unauthorized user, please login again.",
+  SERVER_ERROR: "Server error occurred, please try again after sometime.",
   IMAGE_FILE_SIZE:
     "Please upload only image files with size equal to or less than 200KB.",
   ORGANISATION_UPDATE_ADDRESS_ERROR:

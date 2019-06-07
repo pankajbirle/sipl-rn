@@ -87,8 +87,8 @@ export function requestError(error) {
     // alert(error.config.url);
     showConnectionAlert = false;
     Alert.alert(
-      "Poor Connection",
-      "Poor internet connection. Try later!",
+      MESSAGES.POOR_CONNECTION,
+      MESSAGES.POOR_INTERNET_CONNECTION,
       [
         {
           text: "OK",
@@ -157,19 +157,17 @@ export const apiErrors = res => {
   ) {
     Toast.showToast(response.data.error.message.value, "danger");
   } else if (response.status && response.status == STATUS_CODES.BAD_REQUEST) {
-    Toast.showToast("You are unauthorized user, please login again.", "danger");
+    Toast.showToast(MESSAGES.UNAUTHORIZED_USER, "danger");
   } else if (response.status && response.status === STATUS_CODES.UNAUTHORIZED) {
-    Alert.alert(
+    /*  Alert.alert(
       "Session Expired!",
       " Your session has been expired. Please login again.",
       [{ text: "OK", onPress: () => onLogout() }],
       { cancelable: false }
-    );
+    ); */
+    Toast.showToast(MESSAGES.INVALID_EMAIL_PASSWORD, "danger");
   } else if (response && response.status == STATUS_CODES.FORBIDDEN) {
-    Toast.showToast(
-      "Server error occurred, please try again after sometime.",
-      "danger"
-    );
+    Toast.showToast(MESSAGES.SERVER_ERROR, "danger");
   } else if (
     response &&
     (response.status == STATUS_CODES.INTERNAL_SERVER_ERROR ||
@@ -177,12 +175,9 @@ export const apiErrors = res => {
       response.status == STATUS_CODES.SERVICE_UNAVAILABLE ||
       response.status == STATUS_CODES.BAD_GATEWAY)
   ) {
-    Toast.showToast(
-      "Server error occurred, please try again after sometime.",
-      "danger"
-    );
+    Toast.showToast(MESSAGES.SERVER_ERROR, "danger");
   } else {
-    Toast.showToast("Something went wrong please try again.", "danger");
+    Toast.showToast(MESSAGES.SOMETHING_WENT_WRONG, "danger");
   }
 };
 
