@@ -1,32 +1,43 @@
-import { createDrawerNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
-import DrawerComponent from './drawer';
-import ChangePassword from './account-settings/ChangePassword';
-import UpdateProfile from './account-settings/UpdateProfile';
-import AssetLists from '../app/assets/index';
+import {
+  createDrawerNavigator,
+  createAppContainer,
+  createStackNavigator
+} from "react-navigation";
+import DrawerComponent from "./drawer";
+import ChangePassword from "./account-settings/ChangePassword";
+import UpdateProfile from "./account-settings/UpdateProfile";
+import AssetLists from "../app/assets/index";
 
-const MyStackNavigator = createStackNavigator({
+const MyStackNavigator = createStackNavigator(
+  {
     Home: {
-        screen: AssetLists,
-    },   
+      screen: UpdateProfile
+    },
     UpdateProfile: {
-        screen: UpdateProfile
+      screen: AssetLists
     },
     ChangePassword: {
-        screen: ChangePassword
-    },  
-}, {
-        headerMode: 'none'
+      screen: ChangePassword
     }
+    /* OrganisationProfile: {
+      screen: OrganisationProfile
+    } */
+  },
+  {
+    headerMode: "none"
+  }
 );
 
-
-const MyDrawerNavigator = createDrawerNavigator({
+const MyDrawerNavigator = createDrawerNavigator(
+  {
     MainStack: {
-        screen: MyStackNavigator,
-    },
-}, {
-        contentComponent: DrawerComponent, /** This is our custom drawer component */
-    });
+      screen: MyStackNavigator
+    }
+  },
+  {
+    contentComponent: DrawerComponent /** This is our custom drawer component */
+  }
+);
 
 const AppStack = createAppContainer(MyDrawerNavigator);
 

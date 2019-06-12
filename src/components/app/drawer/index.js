@@ -18,6 +18,7 @@ import {
 } from "native-base";
 import { connect } from "react-redux";
 import { Text, UserImage } from "../../common";
+import Collapse from "../../common/CollapsDropdown";
 import { CustomIcon } from "../../../utils/CustomIcon";
 import { logOutUserAPI } from "../../../actions/Auth";
 import { AMP_CONTROL_ROLE, COUNCIL_ADMIN_ROLE } from "../../../config";
@@ -76,12 +77,12 @@ class Drawer extends Component {
   onLogout = () => async () => {
     //AsyncStorage.clear();
     await AsyncStorage.removeItem("LOGGEDUSER");
-    await AsyncStorage.removeItem("CURRENTROLES");
+    // await AsyncStorage.removeItem("CURRENTROLES");
     this.props.navigation.navigate("AuthLoading");
     this.props.navigation.closeDrawer();
-    this.props.logOutUserAPI(res => {
+    /* this.props.logOutUserAPI(res => {
       console.log("User logout");
-    });
+    }); */
   };
 
   /*
@@ -279,26 +280,8 @@ class Drawer extends Component {
                     style={innerStyle.mapPinIcon}
                   />
                 </View>
-                <Text style={innerStyle.navText}>National Park</Text>
+                <Text style={innerStyle.navText}>Home</Text>
               </ListItem>
-
-              {(this.state.currentRoleId == AMP_CONTROL_ROLE ||
-                this.state.currentRoleId == COUNCIL_ADMIN_ROLE) && (
-                <ListItem
-                  noBorder
-                  style={[innerStyle.listItemMenu, paddingTop.Ten]}
-                  onPress={this.navigate("AllOrganisation")}
-                >
-                  <View style={innerStyle.iconWrapper}>
-                    {/*  <CustomIcon style={[innerStyle.navIcons]} name="organisations" /> */}
-                    <Image
-                      source={require("../../../assets/images/landmark.png")}
-                      style={innerStyle.landmarkIcon}
-                    />
-                  </View>
-                  <Text style={innerStyle.navText}>Organisations</Text>
-                </ListItem>
-              )}
             </List>
           )}
         </Content>
@@ -405,6 +388,12 @@ const innerStyle = StyleSheet.create({
   lowerListItem: {
     paddingTop: 25
   },
+  collapseWrap: {
+    width: "100%",
+    color: "#040605",
+    paddingLeft: 46,
+    textAlign: "left"
+  },
   navIconsProfile: {
     position: "absolute",
     left: 0,
@@ -472,6 +461,10 @@ const innerStyle = StyleSheet.create({
   },
   nationalPark: {
     height: 40,
+    minHeight: 40
+  },
+  Sales: {
+    height: 140,
     minHeight: 40
   },
   navHomeIcons: {

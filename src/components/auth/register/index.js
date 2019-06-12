@@ -31,7 +31,7 @@ import { ImageBox } from "../../common/Image";
 import Permissions from "react-native-permissions";
 import { formatGetUserProfileResult } from "../../../utils/ApiResponse";
 
-class Login extends ValidationComponent {
+class Register extends ValidationComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -109,11 +109,11 @@ class Login extends ValidationComponent {
   };
 
   /**
-   * @method registerUser
-   * @description Navigate user to the registerUser screen
+   * @method loginUser
+   * @description Navigate user to the loginUser screen
    */
-  registerUser = () => {
-    this.props.navigation.navigate("Register");
+  loginUser = () => {
+    this.props.navigation.navigate("Login");
   };
 
   /**
@@ -186,10 +186,10 @@ class Login extends ValidationComponent {
   };
 
   /*
-   * @method onPressLoginButton
+   * @method onPressRegisterButton
    * @description login takes user the app stack by setting isLoggedIn in AsncStorage
    */
-  onPressLoginButton = () => {
+  onPressRegisterButton = () => {
     Keyboard.dismiss();
     this.setState({ isSubmitted: true });
     this.checkValidation();
@@ -239,12 +239,7 @@ class Login extends ValidationComponent {
           }
 
           /* set the userObj in global storage of the device*/
-          /*  AsyncStorage.multiSet([["LOGGEDUSER", JSON.stringify(userObj)]]).then(
-            () => {
-              this.props.navigation.navigate("AuthLoading");
-            }
-          ); */
-          AsyncStorage.setItem("LOGGEDUSER", JSON.stringify(userObj)).then(
+          AsyncStorage.multiSet([["LOGGEDUSER", JSON.stringify(userObj)]]).then(
             () => {
               this.props.navigation.navigate("AuthLoading");
             }
@@ -280,6 +275,45 @@ class Login extends ValidationComponent {
             </View>
             <View style={innerStyle.LoginWrapper}>
               <View style={innerStyle.LoginWrapperInner}>
+              <InputBox
+                  label="Email Address"
+                  mandatory={true}
+                  isDisabled={false}
+                  maxLength={70}
+                  onChangeText={this.onInputValueChanged("email")}
+                  keyboardType={"email-address"}
+                  iconName="mail"
+                  IconSize={18}
+                  value={email}
+                  isFieldInError={this.isFieldInError("email")}
+                  fieldErrorMessage={this.getErrorsInField("email")}
+                />
+                <InputBox
+                  label="Email Address"
+                  mandatory={true}
+                  isDisabled={false}
+                  maxLength={70}
+                  onChangeText={this.onInputValueChanged("email")}
+                  keyboardType={"email-address"}
+                  iconName="mail"
+                  IconSize={18}
+                  value={email}
+                  isFieldInError={this.isFieldInError("email")}
+                  fieldErrorMessage={this.getErrorsInField("email")}
+                />
+                <InputBox
+                  label="Email Address"
+                  mandatory={true}
+                  isDisabled={false}
+                  maxLength={70}
+                  onChangeText={this.onInputValueChanged("email")}
+                  keyboardType={"email-address"}
+                  iconName="mail"
+                  IconSize={18}
+                  value={email}
+                  isFieldInError={this.isFieldInError("email")}
+                  fieldErrorMessage={this.getErrorsInField("email")}
+                />
                 <InputBox
                   label="Email Address"
                   mandatory={true}
@@ -307,23 +341,18 @@ class Login extends ValidationComponent {
                   isFieldInError={this.isFieldInError("password")}
                   fieldErrorMessage={this.getErrorsInField("password")}
                 />
-                <TouchableOpacity
-                  style={innerStyle.forgotLink}
-                  onPress={this.forgetPassword}
-                >
-                  <Text>Forgot Password?</Text>
-                </TouchableOpacity>
+
                 <View style={[innerStyle.btnRow, innerStyle.btnBox]}>
                   <CommonButton
-                    label="LOGIN"
-                    onPress={() => this.onPressLoginButton()}
+                    label="REGISTER"
+                    onPress={() => this.onPressRegisterButton()}
                   />
                 </View>
                 <TouchableOpacity
                   style={innerStyle.forgotLink}
-                  onPress={this.registerUser}
+                  onPress={this.loginUser}
                 >
-                  <Text>Register User</Text>
+                  <Text>Login User</Text>
                 </TouchableOpacity>
               </View>
               <View style={innerStyle.copyrightSection}>
@@ -504,4 +533,4 @@ function mapStateToProps({ auth }) {
 export default connect(
   mapStateToProps,
   { loginUserAPI }
-)(Login);
+)(Register);

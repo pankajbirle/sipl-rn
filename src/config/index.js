@@ -28,8 +28,8 @@ export const API = {
   logout: `${BASE_URL}/logout`,
   forgotPassword: `${BASE_URL}/forgotpassword`,
   updatePassword: `${BASE_URL}/updatepassword/`,
-  updateUserProfile: `${BASE_URL}/users/update/`,
-  getUserDetails: `${BASE_URL}/users`
+  updateUserProfile: `${BASE_URL}/users/`,
+  getUserDetails: `${BASE_URL}/users/`
 };
 
 /** Export FILE_CONFIG */
